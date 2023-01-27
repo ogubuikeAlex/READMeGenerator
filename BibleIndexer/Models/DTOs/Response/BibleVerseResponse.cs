@@ -1,6 +1,8 @@
-﻿namespace BibleIndexer.Models.DTOs.Response
+﻿using System.Collections.Generic;
+
+namespace BibleIndexer.Models.DTOs.Response
 {
-    public record BibleVerseResponse
+    public class BibleVerseResponse
     {
         public int VerseNumber { get; set; }
         public string VerseContent { get; set; }
@@ -9,28 +11,28 @@
         public string BookName { get; set; }
     }
 
-    public record ChapterResonse
+    public class ChapterResonse
     {
         public string BookName { get; set; }
         public List<ChapterResonse> Chapters { get; set; }
     }
 
-    public record BlobResponse
+    public class BlobResponse
     {
         public string Abbrev { get; set; }
         public string Name { get; set; }
         public List<List<string>> Chapters { get; set; }
     }
 
-    public record ChaptersResponse : ResourseAndDropdownResponse<List<string>>
+    public class ChaptersResponse : ResourseAndDropdownResponse<List<string>>
     {
     }
 
-    public record VersesResponse : ResourseAndDropdownResponse<string>
+    public class VersesResponse : ResourseAndDropdownResponse<string>
     {
     }
 
-    public record ResourseAndDropdownResponse<T>
+    public class ResourseAndDropdownResponse<T>
     {
         public string BookName { get; set; }
         public IEnumerable<dynamic> DropDown { get; set; }
