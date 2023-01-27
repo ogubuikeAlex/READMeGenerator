@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>$(AssemblyName) $( "version One")</PackageId>
+    <Title>SampleV1</Title>
+    <PackageTags>Sample;Web</PackageTags>
+    <Authors>KIng</Authors>
+    <Company>King</Company>
+    <Description>Just a sample Nugget</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Ogubuike Alexandra\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.0.2\buildTransitive\..\lib\netstandard1.6\Dia2Lib.dll" />
+    <None Remove="C:\Users\Ogubuike Alexandra\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.0.2\buildTransitive\..\lib\netstandard1.6\OSExtensions.dll" />
+    <None Remove="C:\Users\Ogubuike Alexandra\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.0.2\buildTransitive\..\lib\netstandard1.6\TraceReloggerLib.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="RestSharp" Version="108.0.3" />
+  </ItemGroup>
+
+</Project>
