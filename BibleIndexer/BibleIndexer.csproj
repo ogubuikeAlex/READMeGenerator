@@ -10,8 +10,8 @@
 		<Company>Codetivite</Company>
 		<Product>BibleIndexer</Product>
 		<Description>A comprehensive library for querying the bible and getting cascading dropdowns for loading books of the bible, chapters and associated verses.</Description>
-		<PackageProjectUrl>https://github.com/Slimcent/CountryRegion</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/Slimcent/CountryRegion</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/king-Alex-d-great/BibleIndexer</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/king-Alex-d-great/BibleIndexer</RepositoryUrl>
 		<PackageTags>Bible, Query, Indexer, Search, Book</PackageTags>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>en</NeutralLanguage>
