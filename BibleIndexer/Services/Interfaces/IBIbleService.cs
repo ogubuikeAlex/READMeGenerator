@@ -1,5 +1,7 @@
 ﻿using BibleIndexer.Models.DTOs.Request;
 using BibleIndexer.Models.DTOs.Response;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BibleIndexer.Services.Interfaces
 {

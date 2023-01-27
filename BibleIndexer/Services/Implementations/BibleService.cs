@@ -1,20 +1,23 @@
-﻿using Newtonsoft.Json;
-using BibleIndexer.Data;
+﻿using BibleIndexer.Data;
 using BibleIndexer.Models.DTOs.Request;
 using BibleIndexer.Models.DTOs.Response;
-using BibleIndexer.Services.Interfaces;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace BibleIndexer.Services.Implementations
 {
-    public class BibleService : IBibleService
+    public class BibleService 
     {
         const int first = 1;
         const int bibleBookCount = 66;
         private static IEnumerable<dynamic>? _bibleBlob;
 
         ///<Summary>Get the chapters in a book of the bible using the full name of the boo or via the book abbreviation. This will also return a cascading dropdown for all chapters in specified book</Summary>        
-        public async Task<ChaptersResponse?> GetChaptersInABookOfTheBible(string name)
+        public static async Task<ChaptersResponse?> GetChaptersInABookOfTheBible(string name)
         {
             BlobResponse? bibleResult = await GetBookOfTheBible(name);
             if (bibleResult is null) return null;
@@ -23,7 +26,7 @@ namespace BibleIndexer.Services.Implementations
             List<List<string>>? bookChapters = JsonConvert.DeserializeObject<List<List<string>>>(Convert.ToString(bibleResult.Chapters));
             IEnumerable<dynamic>? chaptersDropdown = bookChapters?.Select(x => new { Id = count += 1 });
 
-            return new()
+            return new ChaptersResponse()
             {
                 DropDown = chaptersDropdown ?? Enumerable.Empty<dynamic>(),
                 BookName = bibleResult?.Name ?? string.Empty,
@@ -32,7 +35,7 @@ namespace BibleIndexer.Services.Implementations
         }
 
         ///<Summary>Generate a random bible verse</Summary>
-        public async Task<BibleVerseResponse?> GenerateRandomBibleVerse()
+        public static async Task<BibleVerseResponse?> GenerateRandomBibleVerse()
         {
             int randomBibleBookIndex = RandomNumberGenerator.GetInt32(bibleBookCount);
             
@@ -48,11 +51,11 @@ namespace BibleIndexer.Services.Implementations
 
             var verseCount = chapter.Count;
             var randomVerseIndex = RandomNumberGenerator.GetInt32(verseCount);
-            return await GetBibleVerse(new() { BookNameInFull = bookName, ChapterNumber = randomBibleChapterIndex, VerseNumber = randomVerseIndex });
+            return await GetBibleVerse(new GetBibleVerseRequest() { BookNameInFull = bookName, ChapterNumber = randomBibleChapterIndex, VerseNumber = randomVerseIndex });
         }
 
         ///<Summary>Gets all books of the bible together with their abbreviations</Summary>
-        public async Task<object> GetAllBooksOfTheBible()
+        public static async Task<object> GetAllBooksOfTheBible()
         {
             IEnumerable<dynamic>? bibleBlob = await GetBlob();
 
@@ -65,7 +68,7 @@ namespace BibleIndexer.Services.Implementations
         }
 
         ///<Summary>Get all verses in a chapter of the bible. This will also return a cascading dropdown for all verses in specified chapter</Summary>
-        public async Task<VersesResponse?> GetAllVersesInAChapterOFTheBible(GetBibleVerseRequest request)
+        public static async Task<VersesResponse?> GetAllVersesInAChapterOFTheBible(GetBibleVerseRequest request)
         {
             BlobResponse? bookResponse = await GetBookOfTheBible(request.BookNameInFull);
             if (bookResponse is null) return null;
@@ -73,7 +76,7 @@ namespace BibleIndexer.Services.Implementations
             IEnumerable<string> verses = bookResponse.Chapters.ElementAt(request.ChapterNumber - first);
             IEnumerable<dynamic> versesDropdown = verses.Any() ? verses.Select(x => new { Id = count += 1 }) : Enumerable.Empty<dynamic>();
 
-            return new()
+            return new VersesResponse()
             {
                 DropDown = versesDropdown,
                 BookName = bookResponse?.Name,
@@ -82,7 +85,7 @@ namespace BibleIndexer.Services.Implementations
         }
 
         ///<Summary>Get a book of bible</Summary>
-        public async Task<BlobResponse?> GetBookOfTheBible(string bookName)
+        public static async Task<BlobResponse?> GetBookOfTheBible(string bookName)
         {
             IEnumerable<dynamic>? bibleBlob = await GetBlob();
 
@@ -95,12 +98,12 @@ namespace BibleIndexer.Services.Implementations
         }
 
         ///<Summary>Get a bible verse</Summary>
-        public async Task<BibleVerseResponse?> GetBibleVerse(GetBibleVerseRequest request)
+        public static async Task<BibleVerseResponse?> GetBibleVerse(GetBibleVerseRequest request)
         {
             BlobResponse? bookResponse = await GetBookOfTheBible(request.BookNameInFull);
             if (bookResponse is null) return null;
 
-            return new()
+            return new BibleVerseResponse()
             {
                 BookName = request.BookNameInFull,
                 ChapterNumber = request.ChapterNumber,
@@ -110,7 +113,7 @@ namespace BibleIndexer.Services.Implementations
         }
 
         /// <Summary>Get all occurences of a word in the bible</Summary>
-        public async Task<IEnumerable<BibleVerseResponse>> SearchBible(string query)
+        public static async Task<IEnumerable<BibleVerseResponse>> SearchBible(string query)
         {
             query = string.IsNullOrEmpty(query) ? throw new InvalidOperationException("Invalid query") : query.ToLower().Trim();
 
@@ -118,7 +121,7 @@ namespace BibleIndexer.Services.Implementations
 
             if (!bibleBlob.Any()) return Enumerable.Empty<BibleVerseResponse>();
 
-            List<BibleVerseResponse> result = new();
+            List<BibleVerseResponse> result = new List<BibleVerseResponse>();
 
             Parallel.ForEach(bibleBlob, (blob, state, index) =>
             {
@@ -130,7 +133,7 @@ namespace BibleIndexer.Services.Implementations
                     {
                         if (verse.ToLower().Contains(query))
                         {
-                            result.Add(new()
+                            result.Add(new BibleVerseResponse()
                             {
                                 BookName = deserializedBlob.Name,
                                 BookNumber = (int)index + first,
@@ -147,6 +150,6 @@ namespace BibleIndexer.Services.Implementations
             return result;
 
         }
-        private async Task<IEnumerable<dynamic>?> GetBlob() => _bibleBlob = _bibleBlob == null ? await Api.GetBibleBlob() : _bibleBlob ?? null;
+        private static async Task<IEnumerable<dynamic>?> GetBlob() => _bibleBlob = _bibleBlob == null ? await Api.GetBibleBlob() : _bibleBlob ?? null;
     }
 }
