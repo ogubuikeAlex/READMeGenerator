@@ -1,6 +1,5 @@
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
+![SampleTwo](https://user-images.githubusercontent.com/58665121/215287700-db1d5c57-1d2c-45e6-ba2a-93987faf361a.png)
 
 # Bible Indexer
 
@@ -15,6 +14,7 @@ A comprehensive library for querying bible content and getting cascading dropdow
 ## Badges
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+![InstallmentCop](https://user-images.githubusercontent.com/58665121/215287594-c8ae9e26-b377-40f6-869b-91557173807b.png)
 
 
 
