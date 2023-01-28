@@ -1,5 +1,8 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace BibleIndexer.Data
 {
@@ -20,7 +23,7 @@ namespace BibleIndexer.Data
         public static async Task<List<dynamic>> GetBibleBlob()
         {
             RestClient client = GetClient();
-            RestRequest request = new("kjv.json");
+            RestRequest request = new RestRequest("kjv.json");
 
             RestResponse response = await client.ExecuteGetAsync(request);
             if (!response.IsSuccessful)
