@@ -1,4 +1,3 @@
-
 ![SampleTwo](https://user-images.githubusercontent.com/58665121/215287700-db1d5c57-1d2c-45e6-ba2a-93987faf361a.png)
 
 # Bible Indexer
@@ -41,12 +40,12 @@ A comprehensive library for querying bible content and getting cascading dropdow
 First, install NuGet. Then, install BibleIndexer from the package manager console:
 
 ```C#   
-   Install-Package BibleIndexer
+   NuGet\Install-Package BibleIndexer.Query -Version 1.0.0
 ```
 
 Or from the .NET CLI as:
 ```C#   
-   dotnet add package BibleIndexer
+   dotnet add package BibleIndexer.Query --version 1.0.0
 ```
 
 Finally, import into the file:
@@ -191,4 +190,3 @@ Contributions are always welcome!
 See `contributing.md` for ways to get started.
 
 Please adhere to this project's `code of conduct`.
-
