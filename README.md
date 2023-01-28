@@ -64,11 +64,13 @@ Finally, import into the file:
 ```
 
 - Input
+
 | Parameter  | Type     | Description                         |
 | :--------  | :------- | :-------------------------          |
 | `bookName` | `string` | **Required**. The name of the book of the bible e.g genesis |
 
 - Output
+
 | Type     |
 | :------- |
 | `Task<ChaptersResponse?>` |
