@@ -78,50 +78,60 @@ Finally, import into the file:
 
 ### Generate a random bible verse
 - Sample Usage
+
 ```C#   
    await BibleService.GenerateRandomBibleVerse();
 ```
 - Output
+
 | Type     |
 | :------- |
 | `Task<BibleVerseResponse?>` |
 
 ### Get all books of the bible
 - Sample Usage
+
 ```C#   
    await BibleService.GetAllBooksOfTheBible();
 ```
 - Output
+
 | Type     |
 | :------- |
 | `Task<object>` |
 
 ### Get all verses and verses dropdown in a chapter of the bible
 - Sample Usage
+
 ```C#   
    await BibleService.GetAllVersesInAChapterOFTheBible(request);
 ```
 - Input
+
 | Parameter  | Type     | 
 | :--------  | :------- | 
 | `request` | `GetBibleVerseRequest` |  
 
 - Output
+
 | Type     |
 | :------- |
 | `Task<VersesResponse?>` |
 
 ### Get a book of the bible
 - Sample Usage
+
 ```C#   
    await BibleService.GetBookOfTheBible(bookName);
 ```
 - Input
+
 | Parameter  | Type     | Description                         |
 | :--------  | :------- | :-------------------------          |
 | `bookName` | `string` | **Required**. The name of the book of the bible e.g genesis |
 
 - Output
+
 | Type     |
 | :------- |
 | `Task<BlobResponse?>` |
@@ -132,26 +142,31 @@ Finally, import into the file:
    await BibleService.GetBibleVerse(request);
 ```
 - Input
+
 | Parameter  | Type     | 
 | :--------  | :------- |
 | `request` | `GetBibleVerseRequest` | 
 
 - Output
+
 | Type     |
 | :------- |
 | `Task<BibleVerseResponse?>` |
 
 ### Search the bible
 - Sample Usage
+
 ```C#   
    await BibleService.SearchBible(query);
 ```
 - Input
+
 | Parameter  | Type     | Description                         |
 | :--------  | :------- | :-------------------------          |
 | `query` | `string` | **Required**. Query param for the search |
 
 - Output
+
 | Type     |
 | :------- |
 | `Task<IEnumerable<BibleVerseResponse>>` |
@@ -164,6 +179,7 @@ Finally, import into the file:
 
 - Robust ReadMe
 
+- AI integration
 - Additional features
 
 
