@@ -93,7 +93,7 @@ public class Demo
         //  return result;
     }
 
-    /* [Benchmark]
+    [Benchmark]
      public void SearchBibleViaForEach()
      {
          string query = "exodus";
@@ -130,7 +130,7 @@ public class Demo
          }
 
          //return result;
-     }*/
+     }
 
     [Benchmark]
     public void SearchBibleViaFor()
@@ -195,11 +195,6 @@ public class Demo
         }
 
         return JsonConvert.DeserializeObject<List<dynamic>>(response.Content);
-    }
-    /*public static string Test(string val)
-    {
-        letter = string.IsNullOrEmpty(letter) ? val : letter;
-        return letter;
-    }*/
+    }    
 
 }
