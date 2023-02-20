@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "sAZloCcYG5vxpAdowVG8vPntcd+DH0BpGs7TPTJ0DS4BHy8rpUGB9QANugRKhVRNMatxDuwZ53UQJ9CiHQoXrg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Ogubuike Alexandra\\source\\repos\\ReadMeGenerator\\ReadMeGenerator\\ReadMeGenerator.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://localhost:5000/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}
